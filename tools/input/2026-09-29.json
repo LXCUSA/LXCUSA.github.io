@@ -1,0 +1,115 @@
+{
+  "archive_title": "周一收盘 $349.57（-0.92%）· 失守 $350 关口、$115B AI 指引复盘、Samueli 减持 $2.5 亿",
+  "rating": "Moderate Buy",
+  "rating_class": "flat",
+  "target_avg": "$527.20",
+  "key_points": [
+    "周一（9/28）收盘 <span class=\"num\">$349.57</span>（<span class=\"num\">-$3.24</span>，<span class=\"num\">-0.92%</span>），失守 <span class=\"num\">$350</span> 整数关口；开盘 <span class=\"num\">$352.87</span>，盘中区间 <span class=\"num\">$347.32 – $355.86</span>。52 周区间 <span class=\"num\">$289.96 – $495.00</span>，现价距 6 月高点约 <span class=\"num\">-29.4%</span>。（Finnhub 9/28 实查、MarketWatch）",
+    "分析师综合评级 <strong>Moderate Buy</strong>（MarketBeat：41 家——1 家 Strong Buy、37 家 Buy、3 家 Hold），平均目标价 <span class=\"num\">$527.20</span>，按周一收盘测算隐含约 <span class=\"num\">+50.8%</span> 上行空间；近两周最新动作是 Bernstein 9/24 重申 Buy。",
+    "GuruFocus（9/28 经 Yahoo）复盘：博通 FY2027 AI 芯片收入指引约 <span class=\"num\">$115B</span>，但股价不涨反跌——市场对“兑现门槛”提高的反应（注意这是 9/2 财报已公布内容的再解读，非新公告）；联创 Henry Samueli 9/23 按 10b5-1 预设计划（2025-12-16 设立）减持约 <span class=\"num\">$2.5 亿</span>，仅占其持股 <span class=\"num\">0.84%</span>，属弱信号。（BBNS 9/28）",
+    "宏观压制：美伊紧张致 Brent 突破 <span class=\"num\">$106</span>、通胀/利率担忧再起，芯片股领跌（StockTwits 9/28）；北京审查国控数据中心博通交换机余波持续（DailyIQ 9/28 转述 Reuters）；季度分红每股 <span class=\"num\">$0.65</span> 将于 9 月 30 日（周三）支付。"
+  ],
+  "sections": [
+    {
+      "title": "📰 行情速览",
+      "items": [
+        "周一（9/28）收盘 <span class=\"num\">$%%PRICE%%</span>，下跌 <span class=\"num\">-$3.24</span>（<span class=\"num\">%%CHANGE_PCT%%</span>）；前收 <span class=\"num\">$352.81</span>；开盘 <span class=\"num\">$352.87</span>，盘中区间 <span class=\"num\">$347.32 – $355.86</span>，失守 <span class=\"num\">$350</span> 整数关口。（Finnhub 9/28 实查、MarketWatch）",
+        "市值约 <span class=\"num\">$1.68 万亿</span>；52 周区间 <span class=\"num\">$289.96 – $495.00</span>，现价距 6 月高点约 <span class=\"num\">-29.4%</span>；近 5 日 <span class=\"num\">-2.25%</span>、近 1 个月 <span class=\"num\">-5.21%</span>、近 6 个月 <span class=\"num\">+16.26%</span>、YTD <span class=\"num\">+1.00%</span>、近 1 年 <span class=\"num\">+6.61%</span>；P/E（TTM）约 <span class=\"num\">44.0</span> 倍，Beta <span class=\"num\">1.48</span>，EPS <span class=\"num\">$4.77</span>。（Finnhub）",
+        "事件提醒：季度分红每股 <span class=\"num\">$0.65</span> 将于 9 月 30 日（周三）支付；下一季（Q4）财报按惯例预计 12 月初，具体日期<strong>未确认</strong>（TipRanks 口径显示 12/10，待公司确认）。"
+      ]
+    },
+    {
+      "title": "🏢 基本面",
+      "items": [
+        "<strong>$115B FY2027 AI 指引再被复盘、股价不涨反跌</strong>（GuruFocus 经 Yahoo，9/28）：博通 FY2027 AI 芯片收入预期约 <span class=\"num\">$115B</span>，但周一股价盘中反而跌约 <span class=\"num\">0.7%</span> 至 <span class=\"num\">$350.10</span>（美东 11:51）。解读：指引越高、市场对“兑现”的门槛也越高，sell-the-news 情绪延续。注意：这是 9/2 财报已公布内容的媒体再解读，非公司新公告。<span class=\"tag flat\">中性</span>",
+        "<strong>联创 Henry Samueli 减持约 $2.5 亿</strong>（BBNS 9/28，引 Form 4）：9/23 出售 702,190 股、另赠与 72,474 股，出售部分约占其持股的 <span class=\"num\">0.84%</span>；交易遵循 2025-12-16 设立的 10b5-1 预设计划，申报文件未含对需求、毛利率或指引的任何警示，属弱信号。<span class=\"tag flat\">中性</span>",
+        "<strong>美伊紧张升级、油价飙升压制芯片股</strong>（StockTwits 9/28）：Brent 突破 <span class=\"num\">$106</span>、WTI 逼近 <span class=\"num\">$94</span>，通胀与利率担忧再起，科技股领跌；StockTwits 散户情绪对 NVDA/AVGO 偏空、对 AMD/INTC 偏多。属宏观层面利空，非公司基本面变化。<span class=\"tag bear\">看空</span>",
+        "<strong>中国审查余波 + OpenAI 暂停前沿模型训练传闻</strong>（DailyIQ 9/28 汇总）：转述 Reuters 称北京国资委正审查国控数据中心博通交换机的使用，中国收入占比已从 FY23 的 <span class=\"num\">32%</span> 降至 FY25 的 <span class=\"num\">17%</span>；另据未点名出处的报道称 OpenAI 暂停前沿 AI 模型训练、周一盘前拖累 AVGO 约 <span class=\"num\">1%</span>（后者出处不明，谨慎看待）。<span class=\"tag bear\">看空</span>",
+        "<strong>AI 收入 +221%、连续 15 年上调分红</strong>（Mitrade 9/28）：Q3 AI 半导体收入同比 <span class=\"num\">+221%</span>；分红连续 15 年上调，低派息率支撑未来分红继续增长。基本面长期逻辑未变。<span class=\"tag bull\">看多</span>"
+      ]
+    },
+    {
+      "title": "🎯 分析师评级",
+      "items": [
+        "综合评级：<strong>Moderate Buy</strong>（MarketBeat，41 家：1 家 Strong Buy、37 家 Buy、3 家 Hold）；平均目标价 <span class=\"num\">$527.20</span>（最高 <span class=\"num\">$715</span> / 最低 <span class=\"num\">$350</span>），按周一收盘 <span class=\"num\">$349.57</span> 测算隐含约 <span class=\"num\">+50.8%</span> 上行空间。<span class=\"tag bull\">看多</span>",
+        "<details class=\"more\"><summary>其他统计口径（仅供参考）</summary><ul><li>RoboForex 汇总的 Barchart（约 9/23 口径，42 家）：34 家 Strong Buy、3 家 Buy、5 家 Hold；</li><li>DailyIQ（32 家）：平均目标价 <span class=\"num\">$532</span>（最高 <span class=\"num\">$715</span> / 最低 <span class=\"num\">$216</span>），评级分布 17 Strong Buy / 35 Buy / 5 Hold / 1 Sell / 1 Strong Sell（各口径统计时点不同）；</li><li>MarketBeat 自身搜索摘要另显示平均目标价 <span class=\"num\">$509.04</span>，与预测页 <span class=\"num\">$527.20</span> 口径冲突——应为统计时点/家数不同，本页以预测页实时口径为准。</li></ul></details>",
+        "近期评级变化（近 2 周）：<strong>近两周最新动作为 Bernstein 9/24 重申 Buy</strong>（未披露新目标价）；Piper Sandler 9/10 新覆盖 Overweight（目标价 <span class=\"num\">$460</span>）；9/3 财报后集中调整——Macquarie 上调 Neutral→Outperform（目标价 <span class=\"num\">$490</span>）、UBS 下调 Buy→Hold（偏空）、BMO <span class=\"num\">$455 → $575</span>（Outperform）、Truist <span class=\"num\">$550 → $520</span>（Buy）、DA Davidson 维持 Neutral 目标价 <span class=\"num\">$400 → $350</span>（偏空）、Raymond James <span class=\"num\">$450 → $475</span>、TD Cowen <span class=\"num\">$500 → $475</span>、Morgan Stanley <span class=\"num\">$502 → $505</span>、Citi <span class=\"num\">$500 → $515</span>（Buy）、Evercore 新目标价 <span class=\"num\">$578</span>、BNP Paribas Exane <span class=\"num\">$675 → $715</span>（Outperform，当前最高）。（MarketBeat、Daily Political）"
+      ]
+    },
+    {
+      "title": "📊 技术面",
+      "items": [
+        "趋势：周一收盘 <span class=\"num\">$%%PRICE%%</span>（<span class=\"num\">%%CHANGE_PCT%%</span>），仍位于 20 日（<span class=\"num\">$%%MA20%%</span>）、50 日（<span class=\"num\">$%%MA50%%</span>）与 200 日（<span class=\"num\">$%%MA200%%</span>）均线下方（Stockopedia 9/28 口径：低于 200 日均线约 <span class=\"num\">4.95%</span>；stockalert.pro 9/27 曾触发“死叉”提醒），上方均线构成压力带，走势仍偏弱。<span class=\"tag bear\">中性偏弱</span>",
+        "阻力：近端看 50 日（<span class=\"num\">$%%MA50%%</span>）与 200 日（<span class=\"num\">$%%MA200%%</span>）均线构成的压力带；若能有效向上突破该压力带，远端再看 52 周高点 <span class=\"num\">$495</span>。",
+        "支撑：<span class=\"num\">$350</span> 整数关口得而复失；下方先看 <span class=\"num\">$340</span> 一带（9/16 低点 <span class=\"num\">$335.81</span>、收盘 <span class=\"num\">$339.51</span> 附近），再下看 <span class=\"num\">$330</span>、<span class=\"num\">$300</span> 心理关口。",
+        "成交量：ad-hoc-news 统计 9/28 美东 11:19 盘中成交约 <span class=\"num\">558 万股</span>（全天成交量未确认），交投相对清淡。",
+        "动量：RSI(14) 为 <span class=\"num\">%%RSI%%</span>，维持中性偏弱区间。"
+      ]
+    },
+    {
+      "title": "💬 社交平台头条",
+      "items": [
+        "X <span class=\"num\">@pequityresearch</span>（P Equity Research，9/28）：转述传闻称谷歌将 TPUv8 从博通转向联发科半定制模式、每千万片可省约 <span class=\"num\">780 亿美元</span>（约 <span class=\"num\">43%</span> 成本）——该传闻未获官方证实，“43%”口径无可靠出处；实际公开报道的版本是 TPUv8 双轨路线（训练芯片博通、推理芯片联发科，自 2026 年 4 月起即有报道）。<span class=\"tag bear\">中性偏空</span>（<a href=\"https://x.com/pequityresearch/status/2104379815801577751\">原帖</a>）",
+        "X <span class=\"num\">@danadams_46</span>（Dan Adams，9/28）：列举博通 Q3 数据——营收同比 <span class=\"num\">+86%</span>、AI 半导体收入 <span class=\"num\">+221%</span>、自由现金流 <span class=\"num\">137 亿美元</span>、下季 AI 收入指引 <span class=\"num\">217 亿美元</span>（同比 <span class=\"num\">+236%</span>），称业务丝毫不弱、“奇怪的是股价”。<span class=\"tag bull\">看多</span>（<a href=\"https://x.com/danadams_46/status/2104556526576837035\">原帖</a>）",
+        "X <span class=\"num\">@KrisPatel99</span>（Kris Patel，9/28）：反驳“谷歌转向联发科节省 43% 成本”的说法被夸大，称谷歌实际走的是针对不同目标的双轨开发路线，并引用 SemiAnalysis 的分析。<span class=\"tag flat\">中性</span>（<a href=\"https://x.com/KrisPatel99/status/2104469636871753937\">原帖</a>）",
+        "Threads <span class=\"num\">@lees572</span>（JL，9/28，15K 粉丝，33 点赞）：想卖 AVGO 的 cash-secured put，明确这是长期看多的期权策略；评论区有人讨论其持仓成本。<span class=\"tag bull\">看多</span>（<a href=\"https://www.threads.com/@lees572/post/Dd0I4kfjMTQ\">原帖</a>）",
+        "Instagram <span class=\"num\">@markvictorn</span>（Mark | Personal Finance，9/28）：把 AVGO 列为本周 3 只被低估股票之首——称其为 Anthropic/Google 的定制 AI 芯片伙伴，收盘 <span class=\"num\">$352</span> 对华尔街目标价 <span class=\"num\">$519</span>，是买入机会。<span class=\"tag bull\">看多</span>（<a href=\"https://www.instagram.com/reel/Dd1KoM_sm6E/\">原帖</a>）",
+        "<details class=\"more\"><summary>更多平台（已验证，可作补充）</summary><ul><li>X <span class=\"num\">@rdd147</span>（Roger，9/28）：讽刺博通“借钱给客户买自家芯片、客户再为债务兜底”，点名 NVDA 已 <span class=\"num\">1170 亿美元</span>、AVGO <span class=\"num\">290 亿美元</span>债务担保及双方计划新增额度，批评 AI 资本开支的循环融资游戏。<span class=\"tag bear\">看空</span>（<a href=\"https://x.com/rdd147/status/2104276166446326066\">原帖</a>）</li><li>Threads <span class=\"num\">@bleu.capital</span>（BLEU，9/28）：把 AVGO 列入半导体低 PEG 名单（PEG <span class=\"num\">0.45</span>），讨论周期性与结构性 AI 增长的估值框架。<span class=\"tag bull\">看多</span>（<a href=\"https://www.threads.com/@bleu.capital/post/Dd0YmQvEfn2\">原帖</a>）</li><li>Threads <span class=\"num\">@jane_holic_</span>（Jane，9/28）：受 @lees572 启发，记录 9/28 卖出一张 AVGO <span class=\"num\">$350</span> CSP、10/30 到期、盈亏平衡 <span class=\"num\">$337</span>。<span class=\"tag bull\">看多</span>（<a href=\"https://www.threads.com/@jane_holic_/post/Dd1qYWDFgfI\">原帖</a>）</li><li>Threads <span class=\"num\">@your_stockguy</span>（Nathan Adibe，9/28）：10 月股票推荐名单含 Broadcom（<span class=\"num\">$352 – $380</span>），评级 Strong Buy。<span class=\"tag bull\">看多</span>（<a href=\"https://www.threads.com/@your_stockguy/post/Dd2Dd_sDrRO\">原帖</a>）</li><li>Threads <span class=\"num\">@cikgurich</span>（Richard Stephenson，9/28）：晒 DCF 估值截图，称公允价值 <span class=\"num\">$644.76</span>、股价低估 <span class=\"num\">82.8%</span>。<span class=\"tag bull\">看多</span>（<a href=\"https://www.threads.com/@cikgurich/post/Dd0sBjNmb2_\">原帖</a>）</li><li>Instagram <span class=\"num\">@baggr.fr</span>（Baggr，9/28，法语）：分析为何业绩创纪录但股价仍自高点跌约 <span class=\"num\">30%</span>——市场交易的是预期而非结果，指引略低于共识被放大。<span class=\"tag flat\">中性</span>（<a href=\"https://www.instagram.com/reel/Dd1myS4Nau5/\">原帖</a>）</li><li>Instagram <span class=\"num\">@orel_kakoon</span>（Orel Kakoon，9/28，希伯来语）：转述 Hock Tan 表态——博通激光器供应不足、未来两年将大幅扩产（利好产业链 AAOI），该表态仅见该视频转述、未经主流媒体验证。<span class=\"tag bull\">看多（产业链）</span>（<a href=\"https://www.instagram.com/reel/Dd1PlHGlRK6/\">原帖</a>）</li><li>Instagram <span class=\"num\">@bullishbrokeguy</span>（The Bullish Broke Guy，9/28）：中性复盘 Q3——收入 <span class=\"num\">$29.59B</span>、AI <span class=\"num\">$16.7B</span>、Q4 指引略低于预期、客户集中度与 AI 毛利率压力。<span class=\"tag flat\">中性</span>（<a href=\"https://www.instagram.com/p/Dd0O1wRjdLN/\">原帖</a>）</li><li>Facebook <span class=\"num\">Dragon Investing</span>（9/28）：AI 从 971 只股票中筛选，AVGO 上榜——收盘约 <span class=\"num\">$353</span>、分析师目标约 <span class=\"num\">$532</span>（约 <span class=\"num\">51%</span> 上行）、AI 芯片收入 <span class=\"num\">+221%</span>、前瞻市盈率约 <span class=\"num\">18</span> 倍。<span class=\"tag bull\">看多</span>（<a href=\"https://www.facebook.com/reel/2037663660273053/\">原帖</a>）</li><li>Facebook <span class=\"num\">Ryan Cooper</span>（9/27）：发布“周一（9/28）最值得买的 3 只股票”，AVGO 列首位——定制加速器 + 高速网络的 AI 敞口。<span class=\"tag bull\">看多</span>（<a href=\"https://www.facebook.com/reel/2194113841451987/\">原帖</a>）</li><li>Facebook <span class=\"num\">Sachin Arora</span>（@realfinancebysachin，9/28）：将 AVGO 列入“可能翻倍”的 6 只股票，依据 AI 收入增长（营销性质较强）。<span class=\"tag bull\">看多</span>（<a href=\"https://www.facebook.com/reel/1393305179090090/\">原帖</a>）</li></ul></details>",
+        "本节覆盖 X + Threads + Instagram + Facebook 四个平台（每个平台主帖 ≤3 条）。Reddit 窗口内无可验证的具体热帖（ApeWisdom：WSB 过去 24 小时 13 次提及、情绪 89% 偏正面；AltIndex 情绪评分 73/100 中性）；YouTube 窗口内无 48 小时内可验证新视频；StockTwits 无可验证当日热帖（9/28 文章口径：散户对 AVGO 偏空）；TruthSocial / LinkedIn 无；WhatsApp 无公开帖子不作为来源。X 帖子经浏览器任务抓取（登录态正常，账号 @AVGO_X_）。"
+      ]
+    },
+    {
+      "title": "👀 今日关注",
+      "items": [
+        "<strong>FY2027 AI 指引约 $115B 再被复盘</strong>（GuruFocus 经 Yahoo，9/28）：博通 FY2027 AI 芯片收入预期约 <span class=\"num\">$115B</span>，但股价不涨反跌约 <span class=\"num\">0.7%</span> 至 <span class=\"num\">$350.10</span>（美东 11:51）——市场对“兑现门槛”提高的反应。注意这是 9/2 财报已公布内容的再解读，非公司新公告。",
+        "<strong>联创 Henry Samueli 减持约 $2.5 亿</strong>（BBNS 9/28，引 Form 4）：9/23 出售 702,190 股、另赠与 72,474 股，出售部分约占其持股的 <span class=\"num\">0.84%</span>；交易遵循 2025-12-16 设立的 10b5-1 预设计划，申报文件未含对需求、毛利率或指引的任何警示。",
+        "<strong>中国审查事件余波</strong>（DailyIQ 9/28 转述 Reuters）：北京国资委正审查国控数据中心博通交换机的使用；中国收入占比已从 FY23 的 <span class=\"num\">32%</span> 降至 FY25 的 <span class=\"num\">17%</span>。博通暂无新回应。",
+        "<strong>分红支付在即</strong>：季度分红每股 <span class=\"num\">$0.65</span> 将于 9 月 30 日（周三）支付。<span class=\"tag flat\">中性</span>",
+        "以上多为已有信息的媒体再解读与事件跟进；今日公司层面无新的实质性公告（无新品发布、高层新表态、合作/订单/并购消息）。"
+      ]
+    }
+  ],
+  "sources_extra": "价格、均线、RSI 由脚本自动从 Nasdaq 官方日线 + CNBC 实时行情计算。行情数据来自 Finnhub（9/29 实查：9/28 收盘 $349.57，-$3.24 / -0.92%；前收 $352.81；开盘 $352.87；盘中区间 $347.32–$355.86）与 MarketWatch。分析师评级与目标价以 MarketBeat 实时预测页为准（41 家：1 Strong Buy / 37 Buy / 3 Hold；平均目标价 $527.20，按 $349.57 测算隐含上行约 50.8%；最高 $715 BNP Paribas Exane 9/4、最低 $350 DA Davidson 9/4）；其他口径为 RoboForex 汇总的 Barchart（42 家，约 9/23 口径）与 DailyIQ（32 家，平均目标价 $532；各口径统计时点不同）。近两周评级变化：Bernstein 9/24 重申 Buy、Piper Sandler 9/10 新覆盖 Overweight（$460）；9/3 财报后集中调整见正文。$115B 指引复盘来自 GuruFocus 经 Yahoo（9/28）；Samueli 内部人交易来自 BBNS（9/28，引 Form 4）；美伊紧张与芯片股领跌来自 StockTwits（9/28）；中国审查余波与 OpenAI 传闻来自 DailyIQ（9/28 汇总，转述 Reuters）；AI 收入 +221% 与 15 年分红来自 Mitrade（9/28）；分红信息来自 ad-hoc-news（9/28）；技术面口径来自 Stockopedia（9/28）与 stockalert.pro（9/27）。社交平台头条主选 5 条（X 3 条、Threads 1 条、Instagram 1 条），另有已验证补充帖子（X 1 条、Threads 4 条、Instagram 3 条、Facebook 3 条）收入“更多平台”折叠区；均为过去 48 小时内 AVGO 热门讨论帖（按互动热度排序）。X 帖子经浏览器任务抓取（登录态正常，账号 @AVGO_X_）；Reddit / YouTube / StockTwits / TruthSocial / LinkedIn 窗口内无可验证的当日热帖；WhatsApp 无公开帖子不作为来源。",
+  "ref_links": [
+    {
+      "title": "AVGO 行情与分析师评级（MarketBeat）",
+      "url": "https://www.MarketBeat.com/stocks/NASDAQ/AVGO/forecast/"
+    },
+    {
+      "title": "AVGO 行情数据（Finnhub，9/28 实查）",
+      "url": "https://finnhub.io/?q=%22AVGO%22"
+    },
+    {
+      "title": "$115B AI 指引复盘（GuruFocus 经 Yahoo，9/28）",
+      "url": "https://biztoc.com/x/1f643b45466f0535"
+    },
+    {
+      "title": "Samueli 减持 $2.5 亿（BBNS，9/28）",
+      "url": "https://baseballnewssource.com/2026/09/28/does-broadcom-inc-nasdaq-avgos-250m-sale-signal-trouble/11280553.html"
+    },
+    {
+      "title": "芯片股领跌、散户偏空（StockTwits，9/28）",
+      "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-chip-stocks-lead-slide-as-tech-gets-hammered-amid-renewed-u-s-iran-tensions/cZMSobvRBQc"
+    },
+    {
+      "title": "AI 增长与 66% 毛利率展望（ad-hoc-news，9/28）",
+      "url": "https://www.ad-hoc-news.de/boerse/corporate-news/broadcom-stock-weighs-ai-growth-against-a-66-percent-margin-outlook/70193752"
+    },
+    {
+      "title": "Bernstein 重申 Buy（Daily Political，9/24）",
+      "url": "https://www.dailypolitical.com/2026/09/24/broadcoms-avgo-buy-rating-reiterated-at-sanford-c-bernstein.html"
+    },
+    {
+      "title": "AI 收入 +221% 与 15 年分红（Mitrade，9/28）",
+      "url": "https://www.mitrade.com/insights/news/live-news/article-8-2121543-20260929"
+    },
+    {
+      "title": "AVGO 数据与分析（DailyIQ）",
+      "url": "https://dailyiq.me/stock/AVGO"
+    },
+    {
+      "title": "Reddit AVGO 情绪（ApeWisdom）",
+      "url": "http://apewisdom.io/stocks/AVGO/"
+    }
+  ]
+}
