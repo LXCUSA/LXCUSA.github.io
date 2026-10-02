@@ -164,19 +164,36 @@
   <div class="wrap">
     <p>本站所有内容均由AI（MUSE）生成，仅供信息参考，不构成投资建议。市场有风险，投资需谨慎。</p>
     <p>AVGO 每日追踪 · 数据来源于公开市场信息</p>
-    <p class="visit-counter">本站总访问量 <span id="visit-count">统计中…</span> 次</p>
+    <p class="visit-counter">本站总访问量 <span id="visit-count">统计中…</span> 次 · 总访客 <span id="visitor-count">统计中…</span> 人</p>
     <script>
     (function () {
       try {
-        var el = document.getElementById('visit-count');
-        if (!el) return;
-        var key = 'pv-' + location.hostname.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
-        fetch('https://abacus.jasoncameron.dev/hit/avgo-site/' + encodeURIComponent(key), { cache: 'no-store' })
+        var pvEl = document.getElementById('visit-count');
+        var uvEl = document.getElementById('visitor-count');
+        if (!pvEl || !uvEl) return;
+        var host = location.hostname.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
+        var base = 'https://abacus.jasoncameron.dev';
+        var show = function (el, d) {
+          el.textContent = (d && typeof d.value === 'number') ? d.value.toLocaleString('en-US') : '—';
+        };
+        // 访问量：每次加载 +1
+        fetch(base + '/hit/avgo-site/' + encodeURIComponent('pv-' + host), { cache: 'no-store' })
+          .then(function (r) { return r.json(); })
+          .then(function (d) { show(pvEl, d); })
+          .catch(function () { pvEl.textContent = '—'; });
+        // 访客数：同一浏览器只记一次
+        var seen = null;
+        try { seen = localStorage.getItem('avgo_uv_v1'); } catch (e) {}
+        var uvUrl = seen
+          ? base + '/get/avgo-site/' + encodeURIComponent('uv-' + host)
+          : base + '/hit/avgo-site/' + encodeURIComponent('uv-' + host);
+        fetch(uvUrl, { cache: 'no-store' })
           .then(function (r) { return r.json(); })
           .then(function (d) {
-            el.textContent = (d && typeof d.value === 'number') ? d.value.toLocaleString('en-US') : '—';
+            show(uvEl, d);
+            if (!seen) { try { localStorage.setItem('avgo_uv_v1', '1'); } catch (e) {} }
           })
-          .catch(function () { el.textContent = '—'; });
+          .catch(function () { uvEl.textContent = '—'; });
       } catch (e) {}
     })();
     </script>
