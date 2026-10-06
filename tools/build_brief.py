@@ -267,7 +267,13 @@ def update_index(date_str, brief, rows, stats):
         html = f.read()
 
     spark = json.dumps([round(r["close"], 2) for r in rows[-66:]], separators=(",", ":"))
+    # 首页"最新一期"的 key_points 同样需要注入价格/涨跌幅 token（此前漏掉会导致首页残留 %%PRICE%%）
+    _stat_tokens = {"%%PRICE%%": stats["price"], "%%CHANGE_PCT%%": stats["change_pct"],
+                    "%%MA20%%": stats["ma20"], "%%MA50%%": stats["ma50"],
+                    "%%MA200%%": stats["ma200"], "%%RSI%%": stats["rsi"]}
     key_points = "\n".join("        <li>%s</li>" % kp for kp in brief["key_points"])
+    for _tok, _val in _stat_tokens.items():
+        key_points = key_points.replace(_tok, _val)
     latest = """<section id="latest">
     <div class="section-head">
       <h2>最新一期</h2>
