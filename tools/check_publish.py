@@ -4,7 +4,7 @@
 用法:
     python3 check_publish.py 2026-09-25
 
-依次检查 Cloudflare Pages（主）与 GitHub Pages 经自定义域名的备份站：
+依次检查 Cloudflare Pages（主）与 GitHub Pages（备）：
   1. briefs/<date>.html 在两站都返回 200
   2. 两站关键内容一致（顶部价格/均线/RSI 统计区提取对比）
   3. 考虑 CDN 同步延迟，最多轮询约 10 分钟；超时或不一致则 exit 1
@@ -16,7 +16,7 @@ import urllib.request
 
 SITES = {
     "cloudflare": "https://avgo.pages.dev/briefs/%s.html",
-    "github": "https://avgo.lxc.one/briefs/%s.html",
+    "github": "https://mravgo.github.io/briefs/%s.html",
 }
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"}
