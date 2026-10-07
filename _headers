@@ -1,0 +1,14 @@
+# Cloudflare Pages 自定义响应头
+# 静态资源带 ?v=YYYYMMDD 版本号，可放心长缓存；HTML/XML 保持默认重新校验。
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/charts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
