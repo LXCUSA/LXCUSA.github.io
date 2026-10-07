@@ -25,6 +25,19 @@ UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
 
 WEEKDAYS = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
 
+# 站点 canonical 域名（Cloudflare Pages 为主站，GitHub Pages 为备份）
+SITE_URL = "https://avgo.pages.dev"
+
+
+def _short_date(date_str):
+    """2026-10-06 → 10/6"""
+    d = datetime.date.fromisoformat(date_str)
+    return "%d/%d" % (d.month, d.day)
+
+
+def _is_weekend(date_str):
+    return datetime.date.fromisoformat(date_str).weekday() >= 5
+
 
 def fetch_daily():
     # 日线主体：Nasdaq 官方历史行情 API（免 key），返回倒序日线，解析后按日期正序排列。
@@ -174,9 +187,14 @@ def render_brief_page(date_str, brief, rows, stats):
         anchor = section_anchors.get(sec["title"], "")
         if anchor:
             nav_items.append('<a href="#%s">%s</a>' % (anchor, sec["title"]))
+            body = "\n".join(items)
+            # 分析师评级固定口径注释：综合评级统一用 MarketBeat，口径变更时在此注明
+            note = ('\n<p class="caliber-note">'
+                    '综合评级口径：MarketBeat。如统计口径发生变更，会在此处注明。</p>'
+                    if anchor == "ratings" else "")
             sections_html.append(
-                '<section class="brief-section" id="%s">\n<h3>%s</h3>\n<ul>\n%s\n</ul>\n</section>'
-                % (anchor, sec["title"], "\n".join(items)))
+                '<section class="brief-section" id="%s">\n<h3>%s</h3>\n<ul>\n%s\n</ul>%s\n</section>'
+                % (anchor, sec["title"], body, note))
         else:
             sections_html.append(
                 '<section class="brief-section">\n<h3>%s</h3>\n<ul>\n%s\n</ul>\n</section>'
@@ -195,6 +213,13 @@ def render_brief_page(date_str, brief, rows, stats):
         "%%DATE%%": date_str,
         "%%WEEKDAY%%": WEEKDAYS[datetime.date.fromisoformat(date_str).weekday()],
         "%%CUTOFF%%": stats["cutoff"],
+        "%%CUTOFF_SHORT%%": _short_date(stats["cutoff"]),
+        "%%ASSET_V%%": date_str.replace("-", ""),
+        "%%OG_DESC%%": htmlmod.escape(brief.get("archive_title", ""), quote=True),
+        "%%OG_IMAGE%%": SITE_URL + "/charts/avgo-%s.png" % date_str,
+        "%%CHART_ARIA%%": "AVGO 近 6 个月价格走势图，区间 $%.2f–$%.2f" % (
+            min(r["close"] for r in rows[-130:]),
+            max(r["close"] for r in rows[-130:])),
         "%%PRICE%%": stats["price"],
         "%%CHANGE_PCT%%": stats["change_pct"],
         "%%CHANGE_CLASS%%": stats["change_class"],
@@ -261,12 +286,77 @@ def validate_brief(html, stats):
     return errors
 
 
+def _parse_archive_cards(html):
+    """从 index.html 解析现有归档卡片 → [(date, title)]（按日期倒序，同日期只保留一条）。"""
+    pat = re.compile(
+        r'<a class="archive-card" href="briefs/([^"]+?)(?:\.html)?" data-date="([^"]+)">\s*'
+        r'<span class="archive-date">[^<]*</span>\s*'
+        r'(?:<span class="weekend-tag">[^<]*</span>\s*)?'
+        r'<span class="archive-title">(.*?)</span>',
+        re.DOTALL)
+    cards = {}
+    for m in pat.finditer(html):
+        cards[m.group(2)] = m.group(3)
+    return sorted(cards.items(), reverse=True)
+
+
+def _archive_card(date_str, title):
+    tag = ('\n        <span class="weekend-tag">周末版</span>'
+           if _is_weekend(date_str) else '')
+    return ('''      <a class="archive-card" href="briefs/%s" data-date="%s">
+        <span class="archive-date">%s</span>%s
+        <span class="archive-title">%s</span>
+        <span class="archive-arrow">→</span>
+      </a>''') % (date_str, date_str, date_str, tag, title)
+
+
+def _render_archive_section(cards):
+    """cards: [(date, title)] 倒序。最近 10 期平铺，其余按月折叠。"""
+    parts = ['''  <section id="archive">
+    <div class="section-head">
+      <h2>历史归档</h2>
+      <div class="filter-row">
+        <input id="archive-filter" type="date" min="2026-09-19" aria-label="按日期筛选简报">
+        <button id="archive-clear" type="button">清除</button>
+      </div>
+    </div>
+    <div id="archive-list" class="archive-list">''']
+    for d, t in cards[:10]:
+        parts.append(_archive_card(d, t))
+    parts.append('    </div>')
+    months = {}
+    for d, t in cards[10:]:
+        months.setdefault(d[:7], []).append((d, t))
+    for m in sorted(months, reverse=True):
+        label = "%s 年 %s 月" % (m[:4], m[5:7])
+        parts.append('    <details class="archive-month" data-month="%s">' % m)
+        parts.append('      <summary>%s（%d 期）</summary>' % (label, len(months[m])))
+        parts.append('      <div class="archive-list">')
+        for d, t in months[m]:
+            parts.append('  ' + _archive_card(d, t))
+        parts.append('      </div>')
+        parts.append('    </details>')
+    parts.append('    <p id="archive-empty" class="empty" hidden>没有匹配该日期的简报。</p>')
+    parts.append('  </section>')
+    return "\n".join(parts)
+
+
 def update_index(date_str, brief, rows, stats):
     path = os.path.join(SITE, "index.html")
     with open(path, encoding="utf-8") as f:
         html = f.read()
 
-    spark = json.dumps([round(r["close"], 2) for r in rows[-66:]], separators=(",", ":"))
+    # 静态资源版本号（?v=YYYYMMDD），配合 _headers 长缓存
+    asset_v = date_str.replace("-", "")
+    html = re.sub(r"styles\.css\?v=\d{8}", "styles.css?v=%s" % asset_v, html)
+    html = re.sub(r"app\.js\?v=\d{8}", "app.js?v=%s" % asset_v, html)
+
+    spark_rows = rows[-66:]
+    spark = json.dumps([round(r["close"], 2) for r in spark_rows],
+                       separators=(",", ":"))
+    spark_aria = "AVGO 近 3 个月收盘价迷你走势，区间 $%.2f–$%.2f" % (
+        min(r["close"] for r in spark_rows),
+        max(r["close"] for r in spark_rows))
     # 首页"最新一期"的 key_points 同样需要注入价格/涨跌幅 token（此前漏掉会导致首页残留 %%PRICE%%）
     _stat_tokens = {"%%PRICE%%": stats["price"], "%%CHANGE_PCT%%": stats["change_pct"],
                     "%%MA20%%": stats["ma20"], "%%MA50%%": stats["ma50"],
@@ -282,17 +372,19 @@ def update_index(date_str, brief, rows, stats):
     <article class="brief-card featured">
       <div class="price-row">
         <div class="price num">$%s</div>
+        <div class="price-date">%s 收盘</div>
         <div class="change %s">%s</div>
       </div>
-      <div class="spark-wrap"><canvas class="sparkline" data-spark="spark-latest"></canvas></div>
+      <div class="spark-wrap"><canvas class="sparkline" data-spark="spark-latest" role="img" aria-label="%s"></canvas></div>
       <script type="application/json" id="spark-latest">%s</script>
       <ul class="key-points">
 %s
       </ul>
-      <a class="btn" href="briefs/%s.html">阅读完整日报 →</a>
+      <a class="btn" href="briefs/%s">阅读完整日报 →</a>
     </article>
-  </section>""" % (date_str, stats["cutoff"], stats["price"], stats["change_class"],
-                   stats["change_pct"], spark, key_points, date_str)
+  </section>""" % (date_str, stats["cutoff"], stats["price"], _short_date(stats["cutoff"]),
+                   stats["change_class"], stats["change_pct"], spark_aria, spark,
+                   key_points, date_str)
 
     html = re.sub(
         r"<!-- ═══ 最新一期：每日更新时修改本区块 ═══ -->.*?<!-- ═══ 最新一期结束 ═══ -->",
@@ -300,17 +392,14 @@ def update_index(date_str, brief, rows, stats):
         "\n  <!-- ═══ 最新一期结束 ═══ -->",
         html, flags=re.DOTALL)
 
-    if 'data-date="%s"' % date_str not in html:
-        card = """      <a class="archive-card" href="briefs/%s.html" data-date="%s">
-        <span class="archive-date">%s</span>
-        <span class="archive-title">%s</span>
-        <span class="archive-arrow">→</span>
-      </a>
-""" % (date_str, date_str, date_str, brief["archive_title"])
-        html = html.replace(
-            "<!-- ═══ 归档列表：新增日报时在此处最上方添加一条卡片 ═══ -->\n",
-            "<!-- ═══ 归档列表：新增日报时在此处最上方添加一条卡片 ═══ -->\n" + card,
-            1)
+    # 归档：解析现有卡片（含已折叠的月份组）+ 新增本期，重建整个归档区
+    cards = _parse_archive_cards(html)
+    if not any(d == date_str for d, _ in cards):
+        cards.append((date_str, brief["archive_title"]))
+    cards.sort(reverse=True)
+    archive_section = _render_archive_section(cards)
+    html = re.sub(r"  <section id=\"archive\">.*?</section>",
+                  lambda m: archive_section, html, flags=re.DOTALL, count=1)
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -376,6 +465,83 @@ def make_chat_png(date_str, rows):
     return out
 
 
+def _load_brief_meta():
+    """读取 tools/input/*.json → [(date, archive_title, key_points)]，按日期倒序。"""
+    metas = []
+    for p in sorted(glob.glob(os.path.join(TOOLS, "input", "*.json"))):
+        d = os.path.basename(p)[:10]
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
+            continue
+        try:
+            with open(p, encoding="utf-8") as f:
+                b = json.load(f)
+            metas.append((d, b.get("archive_title", d), b.get("key_points", [])))
+        except Exception:
+            continue
+    return sorted(metas, reverse=True)
+
+
+def write_sitemap():
+    """生成 sitemap.xml（首页 + 每期简报 + 深度文章）。"""
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+             "  <url>",
+             "    <loc>%s/</loc>" % SITE_URL,
+             "    <changefreq>daily</changefreq>",
+             "  </url>"]
+    for d, _, _ in _load_brief_meta():
+        lines += ["  <url>",
+                  "    <loc>%s/briefs/%s</loc>" % (SITE_URL, d),
+                  "    <lastmod>%s</lastmod>" % d,
+                  "    <changefreq>monthly</changefreq>",
+                  "  </url>"]
+    lines += ["  <url>",
+              "    <loc>%s/articles/fy26q3-earnings</loc>" % SITE_URL,
+              "    <lastmod>2026-09-03</lastmod>",
+              "    <changefreq>monthly</changefreq>",
+              "  </url>",
+              "</urlset>"]
+    out = os.path.join(SITE, "sitemap.xml")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    return out
+
+
+def write_feed():
+    """生成 feed.xml（RSS 2.0，最近 20 期简报）。"""
+    from email.utils import format_datetime
+    tz = datetime.timezone(datetime.timedelta(hours=8))
+    items = []
+    for d, title, kps in _load_brief_meta()[:20]:
+        desc = htmlmod.escape("；".join(kps[:3]))
+        pub = format_datetime(
+            datetime.datetime.fromisoformat(d).replace(tzinfo=tz))
+        items.append(
+            "    <item>\n"
+            "      <title>%s</title>\n"
+            "      <link>%s/briefs/%s</link>\n"
+            "      <guid>%s/briefs/%s</guid>\n"
+            "      <pubDate>%s</pubDate>\n"
+            "      <description>%s</description>\n"
+            "    </item>"
+            % (htmlmod.escape("AVGO 日报 %s：%s" % (d, title)),
+               SITE_URL, d, SITE_URL, d, pub, desc))
+    rss = "\n".join(
+        ['<?xml version="1.0" encoding="UTF-8"?>',
+         '<rss version="2.0">',
+         "  <channel>",
+         "    <title>AVGO 每日追踪</title>",
+         "    <link>%s/</link>" % SITE_URL,
+         "    <description>Broadcom (NASDAQ: AVGO) 中文每日投资简报</description>",
+         "    <language>zh-CN</language>"]
+        + items
+        + ["  </channel>", "</rss>"])
+    out = os.path.join(SITE, "feed.xml")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(rss + "\n")
+    return out
+
+
 def main():
     if len(sys.argv) != 2 or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", sys.argv[1]):
         print("用法: python3 build_brief.py YYYY-MM-DD", file=sys.stderr)
@@ -428,6 +594,10 @@ def main():
     print("已更新: index.html")
     png = make_chat_png(date_str, rows)
     print("已生成聊天配图:", png)
+    sm = write_sitemap()
+    print("已生成:", sm)
+    feed = write_feed()
+    print("已生成:", feed)
     print("STATS_JSON:" + json.dumps(stats))
 
 
