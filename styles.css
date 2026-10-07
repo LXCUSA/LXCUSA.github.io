@@ -205,6 +205,38 @@ section { margin-bottom: 36px; }
 .archive-arrow { color: var(--faint); font-size: 1.2rem; }
 .empty { color: var(--muted); text-align: center; padding: 30px 0; }
 
+/* 周末版标签：非交易日简报的归档卡片标识 */
+.weekend-tag {
+  font-size: 0.72rem; color: var(--muted); white-space: nowrap;
+  border: 1px dashed var(--border); border-radius: 8px; padding: 3px 8px;
+}
+
+/* 归档按月折叠 */
+details.archive-month { margin-top: 12px; }
+details.archive-month > summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 18px; color: var(--text);
+  font-weight: 600; font-size: 0.95rem;
+}
+details.archive-month > summary::-webkit-details-marker { display: none; }
+details.archive-month > summary::before {
+  content: "▸"; color: var(--faint); font-size: 0.85rem;
+  transition: transform 0.15s ease;
+}
+details.archive-month[open] > summary::before { transform: rotate(90deg); }
+details.archive-month > summary:hover { background: var(--card-hover); }
+details.archive-month .archive-list { margin-top: 10px; }
+
+/* 价格旁的收盘日标注，避免被当成实时价 */
+.price-date {
+  font-size: 0.8rem; color: var(--muted); white-space: nowrap;
+  border: 1px solid var(--border); border-radius: 8px; padding: 3px 10px;
+}
+
+/* 评级口径注释 */
+.caliber-note { font-size: 0.8rem; color: var(--muted); margin: 8px 0 0; }
+
 /* ---------- 日报正文页 ---------- */
 .back-link { display: inline-block; margin-bottom: 16px; color: var(--muted);
   font-size: 0.9rem; }
