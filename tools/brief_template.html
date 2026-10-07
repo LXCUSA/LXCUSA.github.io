@@ -5,9 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AVGO 日报 %%DATE%% | AVGO 每日追踪</title>
 <meta name="description" content="Broadcom (AVGO) %%DATE%% 每日投资简报：行情图表、基本面、分析师评级、技术面、社交平台头条。">
+<link rel="canonical" href="https://avgo.pages.dev/briefs/%%DATE%%">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AVGO 每日追踪">
+<meta property="og:title" content="AVGO 日报 %%DATE%%：$%%PRICE%%（%%CHANGE_PCT%%）">
+<meta property="og:description" content="%%OG_DESC%%">
+<meta property="og:url" content="https://avgo.pages.dev/briefs/%%DATE%%">
+<meta property="og:image" content="%%OG_IMAGE%%">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AVGO 日报 %%DATE%%：$%%PRICE%%（%%CHANGE_PCT%%）">
+<meta name="twitter:description" content="%%OG_DESC%%">
+<meta name="twitter:image" content="%%OG_IMAGE%%">
 <link rel="icon" href="../favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../styles.css?v=%%ASSET_V%%">
 <script>(function(){try{var m=localStorage.getItem("avgo-theme")||"system";var t=(m==="dark"||m==="light")?m:((window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",t);document.documentElement.setAttribute("data-theme-mode",m);}catch(e){}})();</script>
 </head>
 <body>
@@ -15,7 +26,7 @@
 <header class="site-header">
 <div class="wrap">
 <div class="brand">
-<a class="brand-logo-link" href="/" aria-label="AVGO 投资简报首页"><img class="brand-logo" src="../assets/avgo-emblem.png" alt="$AVGO"></a>
+<a class="brand-logo-link" href="/" aria-label="AVGO 投资简报首页"><img class="brand-logo" src="../assets/avgo-emblem.webp" alt="$AVGO"></a>
 <div>
 <h1>AVGO 每日追踪</h1>
 <p class="subtitle">每日更新的 Broadcom (NASDAQ: AVGO) 中文投资资讯站</p>
@@ -26,20 +37,21 @@
 <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
 </button>
 <nav class="nav" id="site-nav">
-<a href="../index.html">← 返回首页</a>
+<a href="../">← 返回首页</a>
 </nav>
 </div>
 </header>
 
 <main class="wrap">
 
-<a class="back-link" href="../index.html">← 返回首页 / 历史归档</a>
+<a class="back-link" href="../">← 返回首页 / 历史归档</a>
 
 <div class="brief-hero">
 <h2>AVGO 每日投资简报</h2>
 <p class="cutoff">简报日期：%%DATE%%（%%WEEKDAY%%）· 数据截至 %%CUTOFF%% 美股收盘</p>
 <div class="price-row">
 <div class="price num">$%%PRICE%%</div>
+<div class="price-date">%%CUTOFF_SHORT%% 收盘</div>
 <div class="change %%CHANGE_CLASS%%">%%CHANGE_PCT%%</div>
 </div>
 <div class="stat-grid">
@@ -65,16 +77,16 @@
 <span><i class="lg" style="background:#16c784"></i>MA50</span>
 <span><i class="lg" style="background:#b07cff"></i>MA200</span>
 </div>
-<div class="chart-wrap"><canvas class="chart" data-price="avgo-data-%%DATE%%"></canvas></div>
+<div class="chart-wrap"><canvas class="chart" data-price="avgo-data-%%DATE%%" role="img" aria-label="%%CHART_ARIA%%"></canvas></div>
 </div>
 <div class="chart-block">
 <div class="chart-title">成交量</div>
-<div class="chart-wrap"><canvas class="chart sm" data-volume="avgo-data-%%DATE%%"></canvas></div>
+<div class="chart-wrap"><canvas class="chart sm" data-volume="avgo-data-%%DATE%%" role="img" aria-label="AVGO 近 6 个月成交量柱状图"></canvas></div>
 </div>
 <div class="chart-block">
 <div class="chart-title">RSI(14) 动量</div>
 <div class="chart-sub">70 上方为超买区，30 下方为超卖区</div>
-<div class="chart-wrap"><canvas class="chart sm" data-rsi="avgo-data-%%DATE%%"></canvas></div>
+<div class="chart-wrap"><canvas class="chart sm" data-rsi="avgo-data-%%DATE%%" role="img" aria-label="AVGO 近 6 个月 RSI(14) 动量曲线，70 上方为超买区、30 下方为超卖区"></canvas></div>
 </div>
 <script type="application/json" id="avgo-data-%%DATE%%">%%CHART_JSON%%</script>
 </section>
@@ -96,7 +108,7 @@
 ⚠️ 免责声明：本站所有内容均由AI（MUSE）生成，仅供信息参考，不构成投资建议。市场有风险，投资需谨慎。请在做出任何投资决策前自行核实数据并咨询专业顾问。
 </div>
 
-<a class="back-link" href="../index.html">← 返回首页 / 历史归档</a>
+<a class="back-link" href="../">← 返回首页 / 历史归档</a>
 
 </main>
 
@@ -113,9 +125,6 @@
 </div>
 </footer>
 
-<script src="../theme.js"></script>
-<script src="../menu.js"></script>
-<script src="../header-scroll.js"></script>
-<script src="../charts.js"></script>
+<script src="../app.js?v=%%ASSET_V%%" defer></script>
 </body>
 </html>
