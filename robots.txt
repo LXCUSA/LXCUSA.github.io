@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://avgo.pages.dev/sitemap.xml
